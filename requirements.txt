@@ -3,3 +3,4 @@ joblib
 numpy
 scikit-learn
 requests
+huggingface-hub==0.21.1
