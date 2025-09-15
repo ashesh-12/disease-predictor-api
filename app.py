@@ -3,18 +3,15 @@ import joblib
 import numpy as np
 import os
 import requests
+from huggingface_hub import hf_hub_download
 
 app = Flask(__name__)
 
 # Download model from Hugging Face model repo
-MODEL_URL = "https://huggingface.co/Ashesh-12/disease-prediction-model/tree/main/rf_model_compressed.pkl"
-MODEL_PATH = "rf_model_compressed.pkl"
-
-if not os.path.exists(MODEL_PATH):
-    print("Downloading model...")
-    response = requests.get(MODEL_URL)
-    with open(MODEL_PATH, "wb") as f:
-        f.write(response.content)
+MODEL_PATH = hf_hub_download(
+    repo_id="Ashesh-12/disease-prediction-model",
+    filename="rf_model_compressed.pkl"
+)
 
 model = joblib.load(MODEL_PATH)
 
